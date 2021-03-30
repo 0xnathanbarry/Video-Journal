@@ -1,0 +1,8 @@
+POST http://localhost:5000/app/new
+Content-Type: application/json
+
+{
+    "videoBlob": {"object": "test1"},
+    "transcription": {"object": "test2"},
+    "title": "test title"
+}
