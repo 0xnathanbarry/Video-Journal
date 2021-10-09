@@ -1,8 +1,4 @@
 import React, { useRef, useEffect, useState } from "react";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -130,10 +126,9 @@ function NewLog() {
   };
 
   return (
-    <Grid container>
-      <Grid item xs={false} sm={2}></Grid>
-      <Grid column="true" item xs={12} sm={8}>
-        <Grid item>
+    <div>
+      <div>
+        <div>
           {recorded === false ? (
             <>
               <video ref={videoEl} autoPlay muted />
@@ -145,27 +140,22 @@ function NewLog() {
               <video ref={recordedEl} controls />
             </>
           )}
-        </Grid>
-        <Grid item>
+        </div>
+        <div>
           {currentlyRecording === false && recorded === false ? (
-            <Button variant="contained" onClick={() => startRecording()}>
-              Start recording
-            </Button>
+            <button onClick={() => startRecording()}>Start recording</button>
           ) : null}
           {currentlyRecording === true && recorded === false ? (
-            <Button variant="contained" onClick={() => stopRecording()}>
-              Stop Recording
-            </Button>
+            <button onClick={() => stopRecording()}>Stop Recording</button>
           ) : null}
-        </Grid>
-        <Grid item>
+        </div>
+        <div>
           {!recorded ? (
-            <Typography>{note}</Typography>
+            <p>{note}</p>
           ) : (
-            <Typography>
+            <div>
               {wordTimeStamps.map((grouping, index) => (
-                <Link
-                  color="inherit"
+                <p
                   key={index}
                   onClick={() => {
                     recordedEl.current.currentTime =
@@ -173,14 +163,13 @@ function NewLog() {
                   }}
                 >
                   {grouping[0] + " "}
-                </Link>
+                </p>
               ))}
-            </Typography>
+            </div>
           )}
-        </Grid>
-      </Grid>
-      <Grid item xs={false} sm={2}></Grid>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 }
 
